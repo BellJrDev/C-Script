@@ -26,9 +26,13 @@
 *.a
 *.lib
 
+
 # Executables
 *.exe
 *.out
 *.app
+
+# Configurations
+.vscode/
 Doxyfile
 CMakeLists.txt
