@@ -5,18 +5,10 @@
 #include <concepts>
 
 
-class Int
-{
-private:
-	int* data = nullptr;
-
-public:
-	Int() : data(0) {}
-	Int(int number) : data(new int(number)) {}
-}
-
-
-
+// Support smooth this[x] = RHS and LHS = this[x], using ref or val by context
+// Support ForEach
+// Support Map
+// Support Converstion from array to string
 
 template <typename T> 
 class Array
