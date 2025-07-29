@@ -1,14 +1,17 @@
 #pragma once
 
+namespace cpps {
+
+// Class Slice<T>
 template <typename T>
 class Slice {
 public:
 	using value_type = T;
-    using pointer = T*;
-    using reference = T&;
-    using const_reference = const T&;
-    using iterator = T*;
-    using const_iterator = const T*;
+	using pointer = T*;
+	using reference = T&;
+	using const_reference = const T&;
+	using iterator = T*;
+	using const_iterator = const T*;
 
 	// Publically accessible to create placeholder blank Slices
 	Slice();
@@ -24,9 +27,7 @@ public:
 	operator[].
 
 	void Reslice();
-	void Travserse(Iterator<Slice> iter); 
-
-You might want to add const_iterator versions of begin() and end() if not already there.
+	//void Travserse(Iterator<Slice> iter); ... Ignoreing advice to use plain iterators. I don't like them.
 
 private:
 	T* data = undefined;
@@ -36,3 +37,22 @@ private:
 
 	void Clear();
 };
+}
+
+
+/**
+ * @class Iterator
+ *
+ * Pure virtual (interface) for all class-specific derived iterators
+ */
+
+/**
+template <typename T>
+class Iterator
+{
+public:
+	virtual bool IsDone(void) = 0;
+	virtual void Advance(void) = 0;
+	virtual T Current() = 0;
+};
+*/

@@ -146,3 +146,30 @@ template <typename T>
 Array<T> Array<T>::ReverseClone(){
 
 }
+
+// FindInRange searches from startPos (inclusive) to endPos (exclusive)
+// Returns index or -1 if not found OR if range invalid
+int FindInRange(const T& target, size_t startPos, size_t endPos) const noexcept {
+	assert(ValidateRange(startPos, endPos) && "Invalid range passed to FindInRange");
+	if (!ValidateRange(startPos, endPos)) {
+		// optionally log warning here for dev builds
+		return -1;
+	}
+
+	for (size_t i = startPos; i < endPos; ++i) {
+		if (data_[i] == target) {
+			return static_cast<int>(i);
+		}
+	}
+	return -1;
+}
+	void ForEach(Func&& operation) {
+		for (auto& element : data)
+			std::invoke(std::forward<Func>(operation), element);
+	}
+
+	template<typename Func>
+	void ForEach(Func&& operation) const {
+    for (const auto& element : data)
+        std::invoke(std::forward<Func>(operation), element);
+	}
