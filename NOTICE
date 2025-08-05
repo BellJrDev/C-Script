@@ -1,0 +1,10 @@
+This product includes software developed by Dorian Bell Jr. (https://github.com/BellJrDev)
+
+C-Script: TypeScript Ergonomics. C++ Power.
+
+Additional Condition:
+Any library or framework that directly depends on or wraps the C-Script Library must be either:
+(a) released as open source under a permissive or copyleft license, or
+(b) used solely within proprietary, closed-source software applications.
+
+Attribution must be preserved in documentation, about dialogs, or equivalent build outputs.
