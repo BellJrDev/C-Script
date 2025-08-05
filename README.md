@@ -2,31 +2,64 @@
 
 ---
 
-# C-Script
+# The C-Script Library (CppS)
 
 > _TypeScript ergonomics. C++ power._
 
-### _C++ doesn’t need training wheels — just new handlebars_
+### ⚖️ The STL optimizes for compilers. C-Script optimizes for developers.
 
-The STL optimizes C++ for compilers. Now C-Script is optimizing for developers.
+#### **Contrasting Priorities**
 
-C-Script brings Typescript expressiveness to the C++ development experience (DX) without bloat.  
-This lightweight, **header-only** library offers ergonomic data structures and fluent APIs that feel modern, intuitive, and powerful.
+The STL has served the C++ community well — and C++ is a better language because of it.  
+But while the STL is built with compilers in mind, **C-Script** is built with developers in mind.
 
-Whether you're building high-performance systems or quick prototypes, C-Script provides C++ power — without its paperwork.
+#### **Introducing C-Script**
+
+The C-Script Library offers ergonomic alternatives to several STL ADTs,  
+**while maintaining seamless interoperability with the STL.**  
+You can drop CPPS objects into legacy code without friction, by design.
+
+This reflects C-Script’s core philosophy: **"Usability is Utility".**
 
 <br>
 
-### 🧠 Namespace
+---
 
-All features live under the `cpps` namespace (short for **C++ Script**).  
+### 🔧 C++ doesn’t need training wheels — just better handlebars.
+
+#### **TypeScript-Inspired APIs in C++**
+
+C-Script brings TypeScript-like expressiveness to modern C++ without the bloat.  
+Inspired by the developer experience (DX) of TypeScript, C-Script delivers a cleaner, more intuitive API surface.
+
+This compact library offers:
+
+- A **header-only suite** of templated ADTs for zero-hassle integration
+- A **featherlight `String` class**, reimagined for both utility and comfort  
+  _(powered by the library’s single compiled `.cpp` file)_
+
+The result is a fluent, modern API that feels natural and powerful — while staying true to the C++ philosophy.
+
+**Yes, C++ doesn’t need training wheels — just better handlebars.**  
+That’s the C-Script way.
+
+<br>
+
+---
+
+### ⚙️ How to Use C-Script
+
+C-Script is made up of a set of mostly-independent modules. All features live under the `cpps` namespace (short for **C++ Script**).
+
 Just `#include` and go. No macros, no weird build steps, and no ceremony.
 
 > #### Pronunciation Note
 >
 > _For the curious, `cpps` is pronounced "sips".
 > <br>
-> C-P-P-S is inferior, but nonetheless a valid choice._ > <br>
+> C-P-P-S is an inferior choice, but it is also technically valid._
+
+<br>
 
 ---
 
