@@ -21,16 +21,18 @@ You can drop CPPS objects into legacy code without friction, by design.
 
 This reflects C-Script’s core philosophy: **"Usability is Utility".**
 
+C-Script isn’t here to replace the STL — it’s here to complement it by prioritizing developer experience where the STL prioritizes performance and generality.
+
 <br>
 
 ---
 
-### 🔧 C++ doesn’t need training wheels — just better handlebars.
+### 🔧 C++ doesn’t need training wheels. It needs just better handlebars.
 
 #### **TypeScript-Inspired APIs in C++**
 
-C-Script brings TypeScript-like expressiveness to modern C++ without the bloat.  
-Inspired by the developer experience (DX) of TypeScript, C-Script delivers a cleaner, more intuitive API surface.
+The C-Script Library brings TypeScript-inspired ergonomics to C++, with sleek APIs and a priority for developer experience (DX).
+It features a header-only suite of ADTs and a lightweight, reimagined String class, all drop-in compatible with legacy STL code.
 
 This compact library offers:
 
@@ -38,10 +40,7 @@ This compact library offers:
 - A **featherlight `String` class**, reimagined for both utility and comfort  
   _(powered by the library’s single compiled `.cpp` file)_
 
-The result is a fluent, modern API that feels natural and powerful — while staying true to the C++ philosophy.
-
-**Yes, C++ doesn’t need training wheels — just better handlebars.**  
-That’s the C-Script way.
+The result is a fluent modern suite that feels natural and powerful without ditching the C++ philosophy.
 
 <br>
 
@@ -57,7 +56,9 @@ Just `#include` and go. No macros, no weird build steps, and no ceremony.
 >
 > _For the curious, `cpps` is pronounced "sips".
 > <br>
-> C-P-P-S is an inferior choice, but it is also technically valid._
+> Yes, you \_could_ call it C-P-P-S, but that's like choosing S-Q-L over sequel.
+>
+> Don't do that yourself, _please._
 
 <br>
 
@@ -68,15 +69,15 @@ Just `#include` and go. No macros, no weird build steps, and no ceremony.
 **Array**
 
 - In TypeScript fashion, this is actually a vector... "Array" just rolls off the tongue better.  
-  _Yes, I know it’s not technically an array. But the TS devs didn’t care — and neither do I._
+  _Yes, I know it’s not technically an array. But TypeScript didn't care — and neither do most devs._
 
 **Queues**
 
 - Four styles included:
-  - Restricted-input (default)
-  - Classic (FIFO, theoretical queue)
+  - Restricted-input queue (default)
+  - Classic quque (FIFO, theoretical moedel most people think of)
   - Deque (double-ended)
-  - Restricted-output (yeah, it’s weird)
+  - Restricted-output queue (yeah, it’s weird)
 
 **Stack**
 

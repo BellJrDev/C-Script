@@ -42,7 +42,7 @@ namespace cpps
 
 		/// @brief Move Coonstructor
 		/// @param rhs
-		String(const String &&rhs);
+		String(String &&rhs);
 
 		/**
 		 * Initializing Constructor I
