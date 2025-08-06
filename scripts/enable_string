@@ -1,0 +1,20 @@
+#!/bin/bash
+# This is the default script file, which should help users run the right script to enable String.
+
+# Detect environment and call corresponding script
+if command -v bash >/dev/null 2>&1; then
+    echo "Running enable_string.sh..."
+    ./scripts/enable_string.sh "$@"
+elif command -v node >/dev/null 2>&1; then
+    echo "Detected Node.js, running enable_string.js..."
+    node ./scripts/enable_string.js "$@"
+elif command -v pwsh >/dev/null 2>&1; then
+    echo "Detected PowerShell Core, running enable_string.ps1..."
+    pwsh ./scripts/enable_string.ps1 "$@"
+elif command -v powershell >/dev/null 2>&1; then
+    echo "Detected Windows PowerShell, running enable_string.ps1..."
+    powershell -File ./scripts/enable_string.ps1 "$@"
+else
+    echo "No supported script runtime found."
+    exit 1
+fi
