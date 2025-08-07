@@ -1,11 +1,13 @@
 #pragma once
-#include <string>
+#include <string>  // for std::string
+#include <cstdlib> // for std::size_t
 
 namespace cpps
 {
 	// Just for my convenience
 	using string = std::string;
 	using view = std::string_view;
+	using size_t = std::size_t;
 
 	enum class LexiCompare : int
 	{
@@ -37,21 +39,49 @@ namespace cpps
 		String();
 
 		/// @brief Copy Constructor
-		/// @param rhs
-		String(const String &rhs);
+		/// @param rhs the String to copy
+		String(const String &rhs) noexcept;
 
 		/// @brief Move Coonstructor
-		/// @param rhs
-		String(String &&rhs);
+		/// @param rhs the String to move
+		String(String &&rhs) noexcept;
 
 		/**
-		 * Initializing Constructor I
+		 * Copy Constructor II
 		 *
-		 * @param text
+		 * Copies from a std::string_view
+		 *
+		 * @param text source data
 		 */
-		String(std::string text);
+		String(const std::string_view text) noexcept;
+
+		/**
+		 * Initializing Move Constructor
+		 *
+		 * Moves source data from a std::string to this String
+		 *
+		 * @param text source data
+		 */
+		String(std::string &&text) noexcept;
 
 		// =============== Operator Overloads =================
+
+		/**
+		 * Move Assignment enabled.
+		 *
+		 * @param rhs the String to move.
+		 * @returns this String with the modification done.
+		 */
+		String &String::operator=(String &&rhs);
+
+		/**
+		 * Assignment from std::string enabled.
+		 *
+		 * @param rhs the new contents for this String.
+		 * @returns
+		 */
+		String &String::operator=(std::string_view rhs);
+
 		/**
 		 * Overloaded + for Concatenation Operator. (I)
 		 * Concatenates this String with rhs, in a new object.
@@ -161,25 +191,56 @@ namespace cpps
 		// =============== Substring Queries ===============
 
 		/**
-		 * Returns a substring from the given range, inclusive.
-		 * The substring is returned as a new String object.
+		 * Makes a new String from an inclusive range within this String.
 		 *
-		 * @param end last index to include in the substring, inclusive.
-		 * @returns a new String object.
+		 * @note Overflow: when `end` exceeds this String's length.
+		 * @note Bad range: when `start > end`.
+		 *
+		 * @warning Bad range returns an empty String.
+		 * @warning Overflow truncates by default, but can be toggled.
+		 *
+		 * @param start Inclusive start index.
+		 * @param end Inclusive end index.
+		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
+		 * @returns A new String object.
 		 */
-		const String Substr(size_t end);
+		String Substr(size_t start, size_t end, bool blankIfOverflow = false) const noexcept;
 
 		/**
-		 * Returns the substring from the given range, inclusive.
-		 * The substring is returned as a new String object.
+		 * Makes a new String from a segment of this String.
 		 *
-		 * @param start the first index to include in the range.
-		 * @param end the last index to include in the range.
-		 * @returns a new String object.
+		 * Similar to Prefix/Suffix, but with a variable start index.
+		 *
+		 * @warning Overflow truncates by default, but can be toggled.
+		 *
+		 * @param start Inclusive start index.
+		 * @param length Number of characters in the desired segment.
+		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
+		 * @returns A new String object.
 		 */
-		const String Substr(size_t start, size_t end) const noexcept;
+		String Segment(size_t start, size_t length, bool blankIfOverflow = false) const noexcept;
 
-		// Missing seg
+		/**
+		 * Makes a new String containing the prefix of this String.
+		 *
+		 * @warning Overflow truncates by default, but can be toggled.
+		 *
+		 * @param length Number of characters in the desired prefix.
+		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
+		 * @returns A new String object.
+		 */
+		String Prefix(size_t length, bool blankIfOverflow = false) const noexcept;
+
+		/**
+		 * Makes a new String containing the suffix of this String.
+		 *
+		 * @warning Overflow truncates by default, but can be toggled.
+		 *
+		 * @param length Number of characters in the desired suffix.
+		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
+		 * @returns A new String object.
+		 */
+		String Suffix(size_t length, bool blankIfOverflow = false) const noexcept;
 
 		// =============== Full-String Methods ===============
 

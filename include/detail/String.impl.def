@@ -13,7 +13,7 @@ namespace cpps
 		std::string_view = view
 	*/
 
-	// =============== Constructors & Destructor =================
+	============== Constructors & Destructor =================
 	String::String()
 	{
 	}
