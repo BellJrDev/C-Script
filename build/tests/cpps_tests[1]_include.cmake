@@ -1,0 +1,5 @@
+if(EXISTS "/home/ptrprincess/cpps/build/tests/cpps_tests[1]_tests.cmake")
+  include("/home/ptrprincess/cpps/build/tests/cpps_tests[1]_tests.cmake")
+else()
+  add_test(cpps_tests_NOT_BUILT cpps_tests_NOT_BUILT)
+endif()

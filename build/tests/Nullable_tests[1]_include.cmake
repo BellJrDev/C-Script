@@ -1,0 +1,5 @@
+if(EXISTS "/home/ptrprincess/cpps/build/tests/Nullable_tests[1]_tests.cmake")
+  include("/home/ptrprincess/cpps/build/tests/Nullable_tests[1]_tests.cmake")
+else()
+  add_test(Nullable_tests_NOT_BUILT Nullable_tests_NOT_BUILT)
+endif()

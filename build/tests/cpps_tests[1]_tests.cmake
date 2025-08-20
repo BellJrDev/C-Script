@@ -1,0 +1,5 @@
+add_test( ExampleTest.BasicAssertion /home/ptrprincess/cpps/build/tests/cpps_tests [==[--gtest_filter=ExampleTest.BasicAssertion]==] --gtest_also_run_disabled_tests)
+set_tests_properties( ExampleTest.BasicAssertion PROPERTIES WORKING_DIRECTORY /home/ptrprincess/cpps/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test( ExampleTest.FailureDemo /home/ptrprincess/cpps/build/tests/cpps_tests [==[--gtest_filter=ExampleTest.FailureDemo]==] --gtest_also_run_disabled_tests)
+set_tests_properties( ExampleTest.FailureDemo PROPERTIES WORKING_DIRECTORY /home/ptrprincess/cpps/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set( cpps_tests_TESTS ExampleTest.BasicAssertion ExampleTest.FailureDemo)

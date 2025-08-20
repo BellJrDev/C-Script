@@ -1,0 +1,660 @@
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot open output file a.exe: Invalid argument
+collect2.exe: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--c++'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot open output file a.exe: Invalid argument
+collect2.exe: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--c++'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+g++.exe: fatal error: no input files
+compilation terminated.
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+g++.exe: fatal error: no input files
+compilation terminated.
+Detecting CXX compiler ABI info failed to compile with the following output:
+Change Dir: /home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_15b6b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_15b6b.dir/build.make CMakeFiles/cmTC_15b6b.dir/build
+gmake[1]: Entering directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_15b6b.dir/CMakeCXXCompilerABI.cpp.o
+/mnt/c/msys64/mingw64/bin/g++.exe    -o CMakeFiles/cmTC_15b6b.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+Assembler messages:
+Fatal error: can't create CMakeFiles/cmTC_15b6b.dir/CMakeCXXCompilerABI.cpp.o: Invalid argument
+gmake[1]: *** [CMakeFiles/cmTC_15b6b.dir/build.make:78: CMakeFiles/cmTC_15b6b.dir/CMakeCXXCompilerABI.cpp.o] Error 1
+gmake[1]: Leaving directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_15b6b/fast] Error 2
+
+
+
+
+Determining if the CXX compiler works failed with the following output:
+Change Dir: /home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_8a3c8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_8a3c8.dir/build.make CMakeFiles/cmTC_8a3c8.dir/build
+gmake[1]: Entering directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_8a3c8.dir/testCXXCompiler.cxx.o
+/mnt/c/msys64/mingw64/bin/g++.exe    -o CMakeFiles/cmTC_8a3c8.dir/testCXXCompiler.cxx.o -c /home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Assembler messages:
+Fatal error: can't create CMakeFiles/cmTC_8a3c8.dir/testCXXCompiler.cxx.o: Invalid argument
+gmake[1]: *** [CMakeFiles/cmTC_8a3c8.dir/build.make:78: CMakeFiles/cmTC_8a3c8.dir/testCXXCompiler.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_8a3c8/fast] Error 2
+
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot open output file a.exe: Invalid argument
+collect2.exe: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--c++'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot open output file a.exe: Invalid argument
+collect2.exe: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--c++'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+1
+g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+Assembler messages:
+Fatal error: can't create CMakeCXXCompilerId.o: Invalid argument
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+g++.exe: fatal error: no input files
+compilation terminated.
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+g++.exe: fatal error: no input files
+compilation terminated.
+Detecting CXX compiler ABI info failed to compile with the following output:
+Change Dir: /home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_4c663/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_4c663.dir/build.make CMakeFiles/cmTC_4c663.dir/build
+gmake[1]: Entering directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4c663.dir/CMakeCXXCompilerABI.cpp.o
+/mnt/c/msys64/mingw64/bin/g++.exe    -o CMakeFiles/cmTC_4c663.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+Assembler messages:
+Fatal error: can't create CMakeFiles/cmTC_4c663.dir/CMakeCXXCompilerABI.cpp.o: Invalid argument
+gmake[1]: *** [CMakeFiles/cmTC_4c663.dir/build.make:78: CMakeFiles/cmTC_4c663.dir/CMakeCXXCompilerABI.cpp.o] Error 1
+gmake[1]: Leaving directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_4c663/fast] Error 2
+
+
+
+
+Determining if the CXX compiler works failed with the following output:
+Change Dir: /home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e691b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e691b.dir/build.make CMakeFiles/cmTC_e691b.dir/build
+gmake[1]: Entering directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e691b.dir/testCXXCompiler.cxx.o
+/mnt/c/msys64/mingw64/bin/g++.exe    -o CMakeFiles/cmTC_e691b.dir/testCXXCompiler.cxx.o -c /home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Assembler messages:
+Fatal error: can't create CMakeFiles/cmTC_e691b.dir/testCXXCompiler.cxx.o: Invalid argument
+gmake[1]: *** [CMakeFiles/cmTC_e691b.dir/build.make:78: CMakeFiles/cmTC_e691b.dir/testCXXCompiler.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/ptrprincess/cpps/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_e691b/fast] Error 2
+
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /mnt/c/msys64/mingw64/bin/g++.exe 
+Build flags: 
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
