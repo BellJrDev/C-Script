@@ -1,20 +1,17 @@
 #pragma once
-#include <string>  // for std::string
-#include <cstdlib> // for std::size_t
+#include <string>
+#include <iterator>
 
-namespace cpps
+export namespace cpps
 {
-	// Just for my convenience
-	using string = std::string;
-	using view = std::string_view;
-	using size_t = std::size_t;
-
+	// Helper enum classes coupled with String	
 	enum class LexiCompare : int
 	{
 		Before = -1,
 		Same = 0,
 		After = 1
 	};
+
 	enum class NumCompare : int
 	{
 		Less = -1,
@@ -25,7 +22,7 @@ namespace cpps
 	/**
 	 * @class String
 	 * @brief A super lightweight wrapper around std::string.
-	 * Offers a more ergonomic interface + convenient methods.
+	 * Offers a more comfortable interface + convenient methods.
 	 */
 	class String
 	{
@@ -38,22 +35,31 @@ namespace cpps
 		/// @brief Nullary Constructor
 		String();
 
+		String(const String* rhs);
+
 		/// @brief Copy Constructor
 		/// @param rhs the String to copy
-		String(const String &rhs) noexcept;
+		String(const String& rhs) noexcept;
 
 		/// @brief Move Coonstructor
 		/// @param rhs the String to move
-		String(String &&rhs) noexcept;
+		String(String&& rhs) noexcept;
 
 		/**
-		 * Copy Constructor II
-		 *
+		 * Initializing Constructor (I).
 		 * Copies from a std::string_view
 		 *
 		 * @param text source data
 		 */
 		String(const std::string_view text) noexcept;
+
+		/**
+		 * Initializing Constructor (II).
+		 * Copies from a string-literal
+		 *
+		 * @param lit a string literal
+		 */
+		String(const char* lit) noexcept;
 
 		/**
 		 * Initializing Move Constructor
@@ -62,7 +68,9 @@ namespace cpps
 		 *
 		 * @param text source data
 		 */
-		String(std::string &&text) noexcept;
+		explicit String(std::string&& text) noexcept;
+
+
 
 		// =============== Operator Overloads =================
 
@@ -72,33 +80,76 @@ namespace cpps
 		 * @param rhs the String to move.
 		 * @returns this String with the modification done.
 		 */
-		String &String::operator=(String &&rhs);
+		String& operator=(String&& rhs);
+
+		String& operator = (const String& rhs);
 
 		/**
 		 * Assignment from std::string enabled.
 		 *
-		 * @param rhs the new contents for this String.
-		 * @returns
+		 * @param rtext the new contents for this String.
+		 * @returns this String with new text
 		 */
-		String &String::operator=(std::string_view rhs);
+		String& operator = (std::string_view rtext);
 
 		/**
-		 * Overloaded + for Concatenation Operator. (I)
-		 * Concatenates this String with rhs, in a new object.
+		 * Assignment from char enabled.
 		 *
-		 * @param rhs a String to append onto this String
-		 * @returns a new String object with the result
+		 * @param symbol a character to assign to this String.
+		 * @returns this String, with new text
 		 */
-		String operator+(const String &rhs) const;
+		String& operator = (char symbol);
+
 
 		/**
-		 * Overloaded + for Concatenation Operator. (II)
-		 * Concatenates this String with rhs, in a new object.
+		 * Equivalence with another String.
 		 *
-		 * @param rhs a std::string_view to append onto this String
-		 * @returns a new String object with the result
+		 * @param rhs a String
+		 * @returns true if this->text matches rhs.text
 		 */
-		String operator+(const std::string_view rhs) const;
+		bool operator == (String& rhs) const noexcept;
+
+		/**
+		 * Equivalence with a std::string_view.
+		 *
+		 * @param rtext a std::string_view
+		 * @returns true if this->text matches rtext
+		 */
+		bool operator == (std::string_view rtext) const noexcept;
+
+		/**
+		 * Equivalence with a char
+		 *
+		 * @param rhs a String
+		 * @returns true if this->text is length 1 and matches symbol.
+		 */
+		bool operator == (char symbol) const noexcept;
+
+
+		/**
+		 * Non-Equivalence with another String.
+		 *
+		 * @param rhs a String
+		 * @returns true if this String's text does not match rhs.text
+		 */
+		bool operator != (String& rhs) const noexcept;
+
+		/**
+		 * Non-Equivalence with a std::string_view.
+		 *
+		 * @param rtext a std::string_view
+		 * @returns true if this String's text does not match rtext
+		 */
+		bool operator != (std::string_view rtext) const noexcept;
+
+		/**
+		 * Non-Equivalence with a char.
+		 *
+		 * @param symbol a character
+		 * @returns true if this->text is not a single char matching symbol.
+		 */
+		bool operator != (char symbol) const noexcept;
+
 
 		/**
 		 * Overloaded [] for char access.
@@ -107,7 +158,7 @@ namespace cpps
 		 * @param index the index of the desired character
 		 * @returns the char at the index
 		 */
-		char &operator[](size_t index);
+		char& operator[](size_t index);
 
 		/**
 		 * Overloaded [] for char access.
@@ -117,6 +168,89 @@ namespace cpps
 		 * @returns a copy of the char at the index
 		 */
 		char operator[](size_t index) const;
+
+
+		/**
+		 * Overloaded + for Concatenation Operator. (I)
+		 * Concatenates this String with rhs, in a new object.
+		 *
+		 * @param rhs a String
+		 * @returns a new String object with the result
+		 */
+		String operator+(const String& rhs) const noexcept;
+
+		/**
+		 * Overloaded + for Concatenation Operator. (II)
+		 * Concatenates this String with rhs, in a new object.
+		 *
+		 * @param rtext a std::string_view
+		 * @returns a new String object with the result
+		 */
+		String operator+(const std::string_view rtext) const noexcept;
+
+		/**
+		 * Overloaded + for Concatenation Operator. (III)
+		 * Concatenates this String with rhs, in a new object.
+		 *
+		 * @param symbol a single character
+		 * @returns a new String object with the result
+		 */
+		String operator+(const char symbol) const noexcept;
+
+
+		/**
+		 * Overloaded += for Mutating Concat Operator. (I)
+		 * Appends rhs to this String.
+		 *
+		 * @param rhs a String
+		 * @returns this String, post-mutation.
+		 */
+		String& operator +=(String& rhs) noexcept;
+
+		/**
+		 * Overloaded += for Mutating Concat Operator. (II)
+		 * Appends rtext to this String.
+		 *
+		 * @param rtext a String
+		 * @returns this String, post-mutation.
+		 */
+		String& operator +=(std::string_view rtext) noexcept;
+
+		/**
+		 * Overloaded += for Mutating Concat Operator. (III)
+		 * Appends symbol to this String.
+		 *
+		 * @param symbol a char
+		 * @returns this String, post-mutation
+		 */
+		String& operator +=(char symbol) noexcept;
+
+
+		/**
+		 * Overloaded * for Self-Concatenation Operator.
+		 * Makes a new String using the text of this String
+		 * in n self-concatenations
+		 *
+		 * @note n = 0 results in an empty string ""
+		 *
+		 * @param n number of times to repeat this String
+		 * @returns a new String object
+		 */
+		String operator*(const size_t n) const noexcept;
+
+		/**
+		 * Overloaded *= for Self-Concatenation Operator.
+		 * Mutates this string by replacing its text with
+		 * the original content repeated n times.
+		 *
+		 * @note n = 0 results in an empty string ""
+		 *
+		 * @param n number of times to repeat this String
+		 * @returns a new String object
+		 */
+		String& operator *=(const size_t n);
+
+
 
 		// =============== Conversion Methods ===============
 
@@ -149,16 +283,7 @@ namespace cpps
 		 * @param index an index within this String
 		 * @return the text of this String, stored in a new std::string
 		 */
-		char CharAt(size_t index) const noexcept;
-
-		/**
-		 * Returns the ASCII code associated with the target char.
-		 *
-		 * @note Non-ASCII characters return -1.
-		 * @param target the char to convert to ASCII
-		 * @return an ASCII code or -1
-		 */
-		static constexpr int Asc(char target);
+		char At(size_t index) const noexcept;
 
 		/**
 		 * Returns the ASCII code of the char at the specified index
@@ -272,7 +397,71 @@ namespace cpps
 		 *
 		 * @param newSuffix the text to append to this String
 		 */
-		void Concat(view newSuffix) noexcept;
+		void Concat(std::string_view newSuffix) noexcept;
+
+
+		/**
+		 * Non-Mutating concatenation.
+		 * Makes a new String to store the concatenation of this
+		 * String's text and the text of rhs.
+		 *
+		 * @note Concat is const, but Append is mutating.
+		 * @param rhs a String
+		 */
+		void Concat(const String& rhs) const noexcept;
+
+		/**
+		 * Non-Mutating concatenation.
+		 * Makes a new String to store the concatenation of this
+		 * String's text and rtext.
+		 *
+		 * @note Concat is const, but Append is mutating.
+		 * @param rtext a std::string_view
+		 */
+		void Concat(std::string_view rtext) const noexcept;
+
+		/**
+		 * Non-Mutating concatenation.
+		 * Makes a new String to store the concatenation of this
+		 * String's text and the text of rhs.
+		 *
+		 * @note Concat is const, but Append is mutating.
+		 * @param symbol a character
+		 */
+		void Concat(char symbol) const noexcept;
+
+
+		/**
+		 * Mutating concatenation (I)
+		 * Adds the rhs to the end of this String.
+		 *
+		 * @param rhs a String object
+		 */
+		void Append(const String& rhs) noexcept;
+
+		/**
+		 * Mutating concatenation (II)
+		 * Adds the rtext to the end of this String.
+		 *
+		 * @param rtext a std::string_view
+		 */
+		void Append(std::string_view rtext) noexcept;
+
+		/**
+		 * Mutating concatenation (III)
+		 * Adds the symbol to the end of this String.
+		 *
+		 * @param symbol a character
+		 */
+		void Append(char symbol) noexcept;
+
+
+
+		void Prepend(const String& rhs) noexcept;
+		void Prepend(std::string_view rtext) noexcept;
+		void Prepend(char symbol) noexcept;
+
+
 
 		/**
 		 * Does a lexical compare between this String and rhs.
@@ -282,7 +471,7 @@ namespace cpps
 		 * @note "abc" --> "cba"
 		 * @return 1 = comes after, 0 = same, -1 = comes before
 		 */
-		LexiCompare Compare(view rhs);
+		LexiCompare Compare(std::string_view rhs);
 
 		/**
 		 * Self-Appends this String n times.
@@ -356,15 +545,23 @@ namespace cpps
 		void TrimEnd() noexcept;
 
 		/**
-		 * Pads the start of this String with n instances of the pad char.
+		 * Adds n instances of symbol to the start of this String.
 		 *
 		 * @param n the number of pad characters to prepend to this String.
+		 * @param pad the character to pad this String with.
+		 */
+		void Prepend(size_t n, char symbol);
+
+		/**
+		 * Pads the start of this String until it reaches length n.
+		 *
+		 * @param n the number of pad characters to prepend to this string.
 		 * @param pad the character to pad this String with.
 		 */
 		void PadStart(size_t n, char pad = ' ');
 
 		/**
-		 * Pads the end of this String with n instances of the pad char.
+		 * Pads the end of this String until it reaches length n.
 		 *
 		 * @param n the number of pad characters to append to this String.
 		 * @param pad the character to pad this String with.
@@ -377,7 +574,7 @@ namespace cpps
 		 * @param target the character to look for
 		 * @returns true if the target exists in this String.
 		 */
-		bool constexpr Includes(char x) const;
+		bool constexpr Includes(char target) const;
 
 		/**
 		 * Determines if this String begins with the given prefix.
@@ -396,8 +593,31 @@ namespace cpps
 		 */
 		bool constexpr EndsWith(std::string_view suffix) const; //(simple boundary checks)
 
+
+		// =============== Regex Methods ===============
 		/*
 			Future: Match, Search, Replace
 		*/
+
+
+		// =============== Deprecated Methods for STL Compatibility ===============
+		std::string::iterator begin();
+		std::string::iterator end();
+
+		const std::string::const_iterator begin() const;
+		const std::string::const_iterator end() const;
+
+
+		// =============== Static Methods ===============
+		/**
+		 * Returns the ASCII code associated with the target char.
+		 *
+		 * @note Non-ASCII characters return -1.
+		 * @param target the char to convert to ASCII
+		 * @return an ASCII code or -1
+		 */
+		static constexpr int Asc(char target);
 	};
 }
+
+
