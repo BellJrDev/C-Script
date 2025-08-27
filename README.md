@@ -44,7 +44,7 @@ To get started with C-Script, follow 2 simple steps.
     (1) Enable C-Script
           - Run the script under /script: `enable_cpps`
           	- Supported runtimes: bash, node, python3, powershell.
-          	- Each script is fully transparent and simply compiles the `String`, `Array`, and `Queue` implementations under the hood.  
+          	- Each script is fully transparent and simply compiles the `String`, `Array`, and `Queue` implementations.  
           
     (2) Then #include as you wish!
           - Components use the include pattern, `<cpps/COMPONENT>` (e.g. `<cpps/String>`)
