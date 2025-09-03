@@ -35,15 +35,13 @@ export namespace cpps
 		/// @brief Nullary Constructor
 		String();
 
-		String(const String* rhs);
-
 		/// @brief Copy Constructor
 		/// @param rhs the String to copy
 		String(const String& rhs) noexcept;
 
 		/// @brief Move Coonstructor
 		/// @param rhs the String to move
-		String(String&& rhs) noexcept;
+		explicit String(String&& rhs) noexcept;
 
 		/**
 		 * Initializing Constructor (I).
@@ -60,6 +58,14 @@ export namespace cpps
 		 * @param lit a string literal
 		 */
 		String(const char* lit) noexcept;
+
+		/**
+		 * Initializing Constructor (III).
+		 * Copies from a single character
+		 *
+		 * @param symbol a single symbol
+		 */
+		String(const char symbol) noexcept;
 
 		/**
 		 * Initializing Move Constructor
@@ -199,7 +205,7 @@ export namespace cpps
 
 
 		/**
-		 * Overloaded += for Mutating Concat Operator. (I)
+		 * Overloaded += for Append Operator. (I)
 		 * Appends rhs to this String.
 		 *
 		 * @param rhs a String
@@ -208,7 +214,7 @@ export namespace cpps
 		String& operator +=(String& rhs) noexcept;
 
 		/**
-		 * Overloaded += for Mutating Concat Operator. (II)
+		 * Overloaded += for Append Operator. (II)
 		 * Appends rtext to this String.
 		 *
 		 * @param rtext a String
@@ -217,7 +223,7 @@ export namespace cpps
 		String& operator +=(std::string_view rtext) noexcept;
 
 		/**
-		 * Overloaded += for Mutating Concat Operator. (III)
+		 * Overloaded += for Append perator. (III)
 		 * Appends symbol to this String.
 		 *
 		 * @param symbol a char
@@ -286,16 +292,6 @@ export namespace cpps
 		char At(size_t index) const noexcept;
 
 		/**
-		 * Returns the ASCII code of the char at the specified index
-		 * within the String.
-		 *
-		 * @note Non-ASCII characters return -1.
-		 * @param index an index within this String
-		 * @return an ASCII code or -1
-		 */
-		constexpr int Asc(size_t index) const;
-
-		/**
 		 * Returns the index at which the target char first appears.
 		 * If the specified char is not found, it returns -1.
 		 *
@@ -313,42 +309,74 @@ export namespace cpps
 		 */
 		int FindLast(char target) const noexcept;
 
+		/**
+		 * Determines if the target char exists within this String.
+		 *
+		 * @param target the character to look for
+		 * @returns true if the target exists in this String.
+		 */
+		constexpr bool Includes(char target) const;
+
+		/**
+		 * Determines if this String begins with the given prefix.
+		 *
+		 * @note Example : "Hel" is a valid prefix of "Hello World!".
+		 *
+		 * @param prefix The potential prefix of the String
+		 * @returns true if this String begins with the same chars as prefix.
+		 */
+		constexpr bool StartsWith(std::string_view prefix) const noexcept;
+
+		/**
+		 *  Determines if this String ends with the given suffix.
+		 *
+		 * @note Example: "ld!" is a valid suffix of "Hello World!".
+		 */
+		constexpr bool EndsWith(std::string_view suffix) const noexcept;
+
+
+
 		// =============== Substring Queries ===============
 
 		/**
-		 * Makes a new String from an inclusive range within this String.
+		 * Makes a new String copied from a portion of this String.
+		 * The portion is specified by ENDPOINTS [start, end).
 		 *
+		 * @note The start index is inclusive, but the end index is EXCLUSIVE.
 		 * @note Overflow: when `end` exceeds this String's length.
 		 * @note Bad range: when `start > end`.
+		 * @note Segment is endpoint-based while Substring is length-based
 		 *
 		 * @warning Bad range returns an empty String.
-		 * @warning Overflow truncates by default, but can be toggled.
+		 * @warning Overflow truncates by default, but can be toggled to return blank.
 		 *
 		 * @param start Inclusive start index.
-		 * @param end Inclusive end index.
+		 * @param end excLusive end index.
 		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
 		 * @returns A new String object.
 		 */
-		String Substr(size_t start, size_t end, bool blankIfOverflow = false) const noexcept;
+		String Segment(size_t start, size_t end, bool blankIfOverflow = false) const noexcept;
 
 		/**
-		 * Makes a new String from a segment of this String.
+		 * Uses a specified length-based portion of this String to make a new String.
+		 * The portion is specified by STARTING POSITION and LENGTH.
 		 *
-		 * Similar to Prefix/Suffix, but with a variable start index.
+		 * @note Substring is similar to Prefix/Suffix, but with a variable start index.
 		 *
-		 * @warning Overflow truncates by default, but can be toggled.
+		 * @warning Bad range returns an empty String.
+		 * @warning Overflow truncates by default, but can be toggled to return blank.
 		 *
 		 * @param start Inclusive start index.
 		 * @param length Number of characters in the desired segment.
 		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
 		 * @returns A new String object.
 		 */
-		String Segment(size_t start, size_t length, bool blankIfOverflow = false) const noexcept;
+		String Substring(size_t start, size_t length, bool blankIfOverflow = false) const noexcept;
 
 		/**
-		 * Makes a new String containing the prefix of this String.
+		 * Makes a new String containing a prefix of this String.
 		 *
-		 * @warning Overflow truncates by default, but can be toggled.
+		 * @warning Overflow truncates by default, but can be toggled to return blank.
 		 *
 		 * @param length Number of characters in the desired prefix.
 		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
@@ -357,9 +385,9 @@ export namespace cpps
 		String Prefix(size_t length, bool blankIfOverflow = false) const noexcept;
 
 		/**
-		 * Makes a new String containing the suffix of this String.
+		 * Makes a new String containing a suffix of this String.
 		 *
-		 * @warning Overflow truncates by default, but can be toggled.
+		 * @warning Overflow truncates by default, but can be toggled to return blank.
 		 *
 		 * @param length Number of characters in the desired suffix.
 		 * @param blankIfOverflow If true, overflow returns a blank String; otherwise, it truncates.
@@ -367,8 +395,100 @@ export namespace cpps
 		 */
 		String Suffix(size_t length, bool blankIfOverflow = false) const noexcept;
 
-		// =============== Full-String Methods ===============
 
+
+
+		// =============== Synthesis Methods ===============
+
+		/**
+		 * Non-Mutating concatenation.
+		 * Makes a new String to store the concatenation of this
+		 * String's text and the text of rhs.
+		 *
+		 * @note Concat is const, but Append is mutating.
+		 * @param rhs a String
+		 */
+		String Concat(const String& rhs) const noexcept;
+
+		/**
+		 * Non-Mutating concatenation.
+		 * Makes a new String to store the concatenation of this
+		 * String's text and rtext.
+		 *
+		 * @note Concat is const, but Append is mutating.
+		 * @param rtext a std::string_view
+		 */
+		String Concat(std::string_view rtext) const noexcept;
+
+		/**
+		 * Non-Mutating concatenation.
+		 * Makes a new String to store the concatenation of this
+		 * String's text and the text of rhs.
+		 *
+		 * @note Concat is const, but Append is mutating.
+		 * @param symbol a character
+		 */
+		String Concat(char symbol) const noexcept;
+
+
+		/**
+		 * Appending (I)
+		 * Adds the rhs to the end of this String.
+		 *
+		 * @param rhs a String object
+		 */
+		String& Append(const String& rhs) noexcept;
+
+		/**
+		 * Appending (II)
+		 * Adds the rtext to the end of this String.
+		 *
+		 * @param rtext a std::string_view
+		 */
+		String& Append(std::string_view rtext) noexcept;
+
+		/**
+		 * Appending (III)
+		 * Adds the symbol to the end of this String.
+		 *
+		 * @param symbol a character
+		 */
+		String& Append(char symbol) noexcept;
+
+		/**
+		 * Prepending (I)
+		 * Adds the rhs to the start of this String.
+		 *
+		 * @param rhs a String object
+		 */
+		String& Prepend(const String& rhs) noexcept;
+
+		/**
+		 * Prepending (II)
+		 * Adds the rtext to the start of this String.
+		 *
+		 * @param rtext a std::string_view
+		 */
+		String& Prepend(std::string_view rtext) noexcept;
+
+		/**
+		 * Mutating concatenation (III)
+		 * Adds the symbol to the start of this String.
+		 *
+		 * @param symbol a character
+		 */
+		String& Prepend(char symbol) noexcept;
+
+		/**
+		 * Self-Appends this String n times.
+		 *
+		 * @note Example : String("Segfault").Repeat(2) --> "SegfaultSegfault"
+		 */
+		void Repeat(size_t n);
+
+
+
+		// =============== String Formatting ===============
 		/**
 		 * Creates a new stack-allocated String (deep copy).
 		 *
@@ -385,6 +505,25 @@ export namespace cpps
 		String New() const noexcept;
 
 		/**
+		 * An alias for the method C-Script calls New().
+		 *
+		 * Creates a new stack-allocated String (deep copy).
+		 *
+		 * @note
+		 * Use this to apply transformations (e.g., casing or reversing)
+		 * without modifying the original instance.
+		 * @note
+		 * Mutating methods affect the returned copy -- not the original.
+		 * @note
+		 * Example : String.Clone().Reverse().Camel();
+		 *
+		 * @returns A new, independent copy of this String.
+		 *
+		 * @see String::New()
+		 */
+		inline String Clone() const noexcept;
+
+		/**
 		 * Reverses the order of characters within this String.
 		 *
 		 * @note
@@ -392,95 +531,6 @@ export namespace cpps
 		 */
 		void Reverse() noexcept;
 
-		/**
-		 * Appends the provided String onto this one.
-		 *
-		 * @param newSuffix the text to append to this String
-		 */
-		void Concat(std::string_view newSuffix) noexcept;
-
-
-		/**
-		 * Non-Mutating concatenation.
-		 * Makes a new String to store the concatenation of this
-		 * String's text and the text of rhs.
-		 *
-		 * @note Concat is const, but Append is mutating.
-		 * @param rhs a String
-		 */
-		void Concat(const String& rhs) const noexcept;
-
-		/**
-		 * Non-Mutating concatenation.
-		 * Makes a new String to store the concatenation of this
-		 * String's text and rtext.
-		 *
-		 * @note Concat is const, but Append is mutating.
-		 * @param rtext a std::string_view
-		 */
-		void Concat(std::string_view rtext) const noexcept;
-
-		/**
-		 * Non-Mutating concatenation.
-		 * Makes a new String to store the concatenation of this
-		 * String's text and the text of rhs.
-		 *
-		 * @note Concat is const, but Append is mutating.
-		 * @param symbol a character
-		 */
-		void Concat(char symbol) const noexcept;
-
-
-		/**
-		 * Mutating concatenation (I)
-		 * Adds the rhs to the end of this String.
-		 *
-		 * @param rhs a String object
-		 */
-		void Append(const String& rhs) noexcept;
-
-		/**
-		 * Mutating concatenation (II)
-		 * Adds the rtext to the end of this String.
-		 *
-		 * @param rtext a std::string_view
-		 */
-		void Append(std::string_view rtext) noexcept;
-
-		/**
-		 * Mutating concatenation (III)
-		 * Adds the symbol to the end of this String.
-		 *
-		 * @param symbol a character
-		 */
-		void Append(char symbol) noexcept;
-
-
-
-		void Prepend(const String& rhs) noexcept;
-		void Prepend(std::string_view rtext) noexcept;
-		void Prepend(char symbol) noexcept;
-
-
-
-		/**
-		 * Does a lexical compare between this String and rhs.
-		 * This String is either lexically before, after, or the same as rhs.
-		 *
-		 * @note The comparison is relative to THIS String.
-		 * @note "abc" --> "cba"
-		 * @return 1 = comes after, 0 = same, -1 = comes before
-		 */
-		LexiCompare Compare(std::string_view rhs);
-
-		/**
-		 * Self-Appends this String n times.
-		 *
-		 * @note Example : String("Segfault").Repeat(2) --> "SegfaultSegfault"
-		 */
-		void Repeat(size_t n);
-
-		// =============== String Formatting ===============
 		/**
 		 * Attempts to convert this String into camelCase formatting.
 		 * @note Example : "some phrase" --> "somePhrase"
@@ -544,13 +594,6 @@ export namespace cpps
 		 */
 		void TrimEnd() noexcept;
 
-		/**
-		 * Adds n instances of symbol to the start of this String.
-		 *
-		 * @param n the number of pad characters to prepend to this String.
-		 * @param pad the character to pad this String with.
-		 */
-		void Prepend(size_t n, char symbol);
 
 		/**
 		 * Pads the start of this String until it reaches length n.
@@ -567,31 +610,6 @@ export namespace cpps
 		 * @param pad the character to pad this String with.
 		 */
 		void PadEnd(size_t n, char pad = ' ');
-
-		/**
-		 * Determines if the target char exists within this String.
-		 *
-		 * @param target the character to look for
-		 * @returns true if the target exists in this String.
-		 */
-		bool constexpr Includes(char target) const;
-
-		/**
-		 * Determines if this String begins with the given prefix.
-		 *
-		 * @note Example : "Hel" is a valid prefix of "Hello World!".
-		 *
-		 * @param prefix The potential prefix of the String
-		 * @returns true if this String begins with the same chars as prefix.
-		 */
-		bool constexpr StartsWith(std::string_view prefix) const;
-
-		/**
-		 *  Determines if this String ends with the given suffix.
-		 *
-		 * @note Example: "ld!" is a valid suffix of "Hello World!".
-		 */
-		bool constexpr EndsWith(std::string_view suffix) const; //(simple boundary checks)
 
 
 		// =============== Regex Methods ===============
@@ -617,7 +635,19 @@ export namespace cpps
 		 * @return an ASCII code or -1
 		 */
 		static constexpr int Asc(char target);
+
+		/**
+		 * Does a lexical compare between this String and rhs.
+		 * This String is either lexically before, after, or the same as rhs.
+		 *
+		 * @note The comparison is relative to THIS String.
+		 * @note "abc" --> "cba"
+		 * @return 1 = comes after, 0 = same, -1 = comes before
+		 */
+		static LexiCompare Compare(std::string_view left, std::string_view right);
 	};
 }
+
+#include "String.inl";
 
 
