@@ -33,7 +33,7 @@ Additionally, the library’s components are fully interoperable with STL contai
 
 <br>
 
-     ⚠️ **Requires C++20 or Newer**
+     ⚠️ Requires C++20 or Newer
      The C-Script Library makes use of modern C++20 features (e.g. concepts). It will not compile with older standards. 
 ---
 
@@ -42,12 +42,18 @@ All features of the C-Script library live under the `cpps` namespace (short for 
 To get started with C-Script, follow 2 simple steps.  
     
     (1) Enable C-Script
-          - Run the script under /script: `enable_cpps`
-          	- Supported runtimes: bash, node, python3, powershell.
-          	- Each script is fully transparent and simply compiles the `String`, `Array`, and `Queue` implementations.  
+          - Run the script under `/scripts'
+            ./enable_cpps        # Unix/macOS
+            .\enable_cpps.ps1    # Windows PowerShell
           
-    (2) Then #include as you wish!
-          - Components use the include pattern, `<cpps/COMPONENT>` (e.g. `<cpps/String>`)
+          - Supported runtimes: bash, node, python3, powershell.
+          - The scripts are fully transparent. They simply compile 'String' and the explicit template instantiations.
+            The result is a complete local install.    
+          
+    (2) Then #include what you need
+          - Use the pattern `<cpps/COMPONENT>` (e.g. `<cpps/String>`)
+          - Pure templates are immediately ready to use.
+          - Compiled classes can be used after running enable_cpps.
 
 
 > #### **Pronunciation Note**
@@ -87,11 +93,9 @@ Plus: since the library is header-only and super tight, it’s totally reasonabl
 
 **Queues**
 
-- Four styles included:
+- Three styles included:
   - Restricted-Input Queue (cpps default)
     - Removals can happen at the front or back, but insertions are back-only 
-  - Classic Queue
-    - The typical FIFO model. Front-only removals and Back-only inserts.
   - Deque
     - Double-Ended Queue, meaning both front and back are valid for insert and removal 
   - Restricted-output queue (yeah, it’s weird)
