@@ -6,35 +6,40 @@
 
 
 namespace cpps {
-	/// @brief Nullable<T> is a lightweight container that represents a possibly "null" value.
+	template <typename T>
+	concept Nullable = requires {
+		{ T::CreateDefault() } -> std::same_as<T>;
+	};
+
+	template <typename T>
+	concept NullConstructible =
+		std::default_initializable<T> || Nullable<T>;
+
+
+	/// @brief Nullor<T> is a lightweight container that represents a possibly "null" value.
 	/// 
-	/// Unlike std::optional, this class is designed to be a simple, minimal wrapper intended 
-	/// primarily for short-lived nullable returns (equivalent to TypeScript's T | undefined), 
-	/// but also safe and efficient enough for longer-term use if needed.
+	/// Unlike std::optional, this class is a minimal wrapper intended primarily for short-lived 
+	//  nullable returns (equivalent to TypeScript's T | undefined). 
+	/// However, it is also safe and efficient enough for longer-term use if needed.
 	///
 	/// It stores the value in-place without heap allocation, tracks validity via a bool,
-	/// and exposes only minimal methods to check nullness and resolve the value.
+	/// and exposes the expected methods to check nullness and resolve the value.
 	///
 	/// Typical usage:
 	/// ```cpp
-	/// Nullable<int> n = someFunction();
-	/// if (!n.IsNull()) {
-	///     int v;
-	///     n.Resolve(v); // v now has the value
+	/// Nullor<int> obj = SomeFunction();
+	/// if (obj)
+	/// {
+	///     int v = n.Resolve();
+	///     // v now has the value
 	/// }
 	/// ```
-	///
-	/// Or, if ignoring null cases:
-	/// ```cpp
-	/// int x = 0;
-	/// n.Resolve(x); // x updated if valid, otherwise unchanged
-	/// ```
-	///
-	/// Additionally, TryUse() allows you to supply a callable to operate on the value if valid.
-	template<typename T>
-	class Nullable {
+	/// Resolving a null object will null-construct a new object with no meaningful data. 
+	/// To avoid depending on meaningless data, remember to check for nullness before you resolve!
+	template<NullConstructible T>
+	class Nullor {
 	private:
-		bool isValid = false;
+		bool hasMeaning = false;
 
 		// Placement storage for T with proper alignment
 		alignas(T) unsigned char storage[sizeof(T)];
@@ -51,75 +56,75 @@ namespace cpps {
 
 		// Destroys the stored object if valid.
 		void Destroy() noexcept {
-			if (isValid) {
+			if (hasMeaning) {
 				ptr()->~T();
-				isValid = false;
+				hasMeaning = false;
 			}
 		}
 
 	public:
 		// Nullary constructor creates null state.
-		Nullable() noexcept = default;
+		Nullor() noexcept = default;
 
 		// Construct from const T& (copy)
-		Nullable(const T& value)
-			: isValid(true) {
+		Nullor(const T& value)
+			: hasMeaning(true) {
 			new (storage) T(value);
 		}
 
 		// Construct from T&& (move)
-		Nullable(T&& value) noexcept(std::is_nothrow_move_constructible_v<T>)
-			: isValid(true) {
+		Nullor(T&& value) noexcept(std::is_nothrow_move_constructible_v<T>)
+			: hasMeaning(true) {
 			new (storage) T(std::move(value));
 		}
 
 		// Copy constructor
-		Nullable(const Nullable& rhs)
-			: isValid(rhs.isValid) {
-			if (isValid) {
+		Nullor(const Nullor& rhs)
+			: hasMeaning(rhs.hasMeaning) {
+			if (hasMeaning) {
 				new (storage) T(*rhs.ptr());
 			}
 		}
 
 		// Move constructor
-		Nullable(Nullable&& rhs) noexcept(std::is_nothrow_move_constructible_v<T>)
-			: isValid(rhs.isValid) {
-			if (isValid) {
+		Nullor(Nullor&& rhs) noexcept(std::is_nothrow_move_constructible_v<T>)
+			: hasMeaning(rhs.hasMeaning) {
+			if (hasMeaning) {
 				new (storage) T(std::move(*rhs.ptr()));
 				rhs.Destroy();
 			}
 		}
 
 		// Copy assignment
-		Nullable& operator=(const Nullable& rhs) {
+		Nullor& operator=(const Nullor& rhs) {
 			if (this != &rhs) {
-				if (isValid && rhs.isValid) {
+				if (hasMeaning && rhs.hasMeaning) {
 					*ptr() = *rhs.ptr();
 				}
-				else if (isValid) {
+				else if (hasMeaning) {
 					Destroy();
 				}
-				else if (rhs.isValid) {
+				else if (rhs.hasMeaning) {
 					new (storage) T(*rhs.ptr());
-					isValid = true;
+					hasMeaning = true;
 				}
 			}
 			return *this;
 		}
 
 		// Move assignment
-		Nullable& operator=(Nullable&& rhs) noexcept(std::is_nothrow_move_assignable_v<T>&& std::is_nothrow_move_constructible_v<T>) {
+		Nullor& operator=(Nullor&& rhs) noexcept(std::is_nothrow_move_assignable_v<T>&& std::is_nothrow_move_constructible_v<T>) {
 			if (this != &rhs) {
-				if (isValid && rhs.isValid) {
+				if (hasMeaning && rhs.hasMeaning) {
 					*ptr() = std::move(*rhs.ptr());
 					rhs.Destroy();
 				}
-				else if (isValid) {
+				else if (hasMeaning) {
 					Destroy();
 				}
-				else if (rhs.isValid) {
+				else if (rhs.hasMeaning) {
 					new (storage) T(std::move(*rhs.ptr()));
-					isValid = true;
+					hasMeaning = true;
 					rhs.Destroy();
 				}
 			}
@@ -127,54 +132,54 @@ namespace cpps {
 		}
 
 		// Destructor destroys the contained object if valid.
-		~Nullable() {
+		~Nullor() {
 			Destroy();
 		}
 
 		/// @brief Check whether the contained value is null.
 		/// @return true if null (empty), false otherwise.
 		bool IsNull() const noexcept {
-			return !isValid;
+			return !hasMeaning;
 		}
 
 		/// @brief Allows idiomatic if (nullable) checks.
 		explicit operator bool() const noexcept {
-			return isValid;
+			return hasMeaning;
 		}
 
 		/**
-		 * @brief Attempts to copy the contained value into 'destination'.
-		 * If null, does nothing and returns false.
-		 * Otherwise, assigns to destination and returns true.
+		 * @brief Effectively converts Nullable<T> to the underlying T.
 		 *
 		 * This is the primary way to extract the value for further use.
 		 *
-		 * @warning Initialize the destination variable in case of null.
-		 * @param destination Reference to store the contained value if valid.
-		 * @return true if value was assigned, false if null.
+		 * @warning
+		 * Always check nullness before resolving.
+		 * Resolving a null returns a null-constructed object with meaningless
+		 * data. Treating such data as if it were meaningful could cause headaches.
+		 *
+		 * @return an object of type T
 		 */
-		bool Resolve(T& destination) const noexcept {
-			if (!isValid) return false;
-			destination = *ptr();
-
-			/**
-			 * @brief Attempts to move the contained value into 'destination'.
-			 * If null, does nothing and returns false.
-			 * Otherwise, moves into destination and returns true.
-			 *
-			 * This is the way to extract the value for further use without copying.
-			 *
-			 * @warning Successful moves destroy this object. It will become null!
-			 * @param destination Reference to store the contained value if valid.
-			 * @return true if value was assigned, false if null.
-			 */
-			template<typename F>
-			bool MoveResolve(T && destination) {
-				if (!isValid) return false;
-				destination = std::move(*ptr());
-				Destroy();
-				return true;
+		T Resolve() {
+			if (hasMeaning)
+			{
+				hasMeaning = false;
+				return std::move(*ptr()); // consume stored T
 			}
-		};
+			else
+			{
+				if constexpr (std::default_initializable<T>)
+				{
+					return T{};
+				}
+				else if constexpr (Nullable<T>)
+				{
+					return T::CreateDefault();
+				}
+			}
+		}
+
+		const T* Content() const {
+			return (hasMeaning) ? ptr() : nullptr;
+		}
 	};
 }
