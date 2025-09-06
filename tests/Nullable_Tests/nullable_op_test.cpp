@@ -4,34 +4,28 @@
 using namespace cpps;
 
 TEST(NullableTest, copyAssignment) {
-	Nullable<int> left(42);
-	Nullable<int> right;
+	Nullor<int> left(42);
+	Nullor<int> right;
 
 	right = left;
 
-	int right_value = -1;
-	right.Resolve(right_value);
-
-	EXPECT_FALSE(left.IsNull());
-	EXPECT_EQ(right_value, 42);
+	int right_value = (right) ? right.Resolve() : -1;
 
 	// Original should be unchanged
-	int left_value = -1;
-	left.Resolve(left_value);
-	EXPECT_EQ(left_value, 42);
+	EXPECT_TRUE(right.IsNull());
+	EXPECT_FALSE(left.IsNull());
+	EXPECT_EQ(right_value, 42);
 }
 
 TEST(NullableTest, moveAssignment) {
-	Nullable<int> older(77);
-	Nullable<int> newer;
+	Nullor<int> older(77);
+	Nullor<int> newer;
 
 	newer = std::move(older);
 
-	int value = -1;
-	newer.Resolve(value);
-
-	EXPECT_EQ(value, 77);
+	int value = newer.Resolve();
 
 	// Older object is now null
 	EXPECT_TRUE(older.IsNull());
+	EXPECT_EQ(value, 77);
 }

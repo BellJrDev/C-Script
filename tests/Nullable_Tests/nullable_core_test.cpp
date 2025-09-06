@@ -4,27 +4,24 @@
 using namespace cpps;
 
 TEST(NullableTest, CheckIsNull) {
-	Nullable<int> obj(25);
-	Nullable<int> null_obj;
+	Nullor<int> obj(25);
+	Nullor<int> null_obj;
 
 	EXPECT_FALSE(obj.IsNull());
 	EXPECT_TRUE(null_obj.IsNull());
 }
 
 TEST(NullableTest, resolve) {
-	Nullable<int> empty;
-	Nullable<int> full(23);
+	Nullor<int> empty;
+	Nullor<int> full(23);
 
-	int empty_value = -1;
-	int full_value = -1;
+	int empty_value = (empty) ? empty.Resolve() : -1;
+	int full_value = (full) ? full.Resolve() : -1;
 
-	bool changed_empty = empty.Resolve(empty_value);
-	bool changed_full = full.Resolve(full_value);
-
-	// Null Nullable objects do not mutate the destination param of Resolve
-	EXPECT_FALSE(changed_empty);
+	// Resolve moves the data from the Nullor shell into a real dest.
+	// Resolving from null returns a null constructed object.
+	EXPECT_EQ(empty.Resolve(), 0);
 	EXPECT_EQ(empty_value, -1);
-	EXPECT_TRUE(changed_full);
 	EXPECT_EQ(full_value, 23);
 }
 

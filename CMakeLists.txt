@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(cpps
     src/String.cpp
     # src/Array.cpp       # for explicit template instantiations
-    # src/Queue.cpp   	  # for explicit instantiations are added later
+    # src/Queue.cpp   	  # for explicit instantiations that are added later
 )
 
 target_include_directories(cpps PUBLIC include)
